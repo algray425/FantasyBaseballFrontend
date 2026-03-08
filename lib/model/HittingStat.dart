@@ -1,0 +1,11 @@
+enum HittingStat
+{
+  PERCENTILE_OVERALL,
+  PERCENTILE_QUALIFIED,
+  RUNS,
+  HOME_RUNS,
+  RBIS,
+  STOLEN_BASES,
+  OBP,
+  NONE
+}

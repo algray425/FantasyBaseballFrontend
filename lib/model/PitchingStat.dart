@@ -1,0 +1,11 @@
+enum PitchingStat
+{
+  PERCENTILE_OVERALL,
+  QUALITY_STARTS,
+  SAVES,
+  HOLDS,
+  ERA,
+  WHIP,
+  KS_PER_NINE,
+  NONE
+}
