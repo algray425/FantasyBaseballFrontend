@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
+
 import 'dart:collection';
 
 import 'package:fantasy_baseball_app/data/PlayerDataSource.dart';
-import 'package:flutter/material.dart';
 
-import '../model/FantasyTeam.dart';
-import '../model/HitterProjection.dart';
-import '../model/HittingStat.dart';
+import 'package:fantasy_baseball_app/model/FantasyTeam.dart';
+import 'package:fantasy_baseball_app/model/HitterProjection.dart';
+import 'package:fantasy_baseball_app/model/HittingStat.dart';
 
 class HitterProjectionsModel extends ChangeNotifier
 {

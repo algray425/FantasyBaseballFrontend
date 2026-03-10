@@ -1,4 +1,5 @@
 import 'package:fantasy_baseball_app/pages/ReliefPitcherRankingsPage.dart';
+import 'package:fantasy_baseball_app/pages/StartingPitcherProjectionsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -29,15 +30,21 @@ class NavigationList extends StatelessWidget
           },
         ),
         ListTile(
-          title: const Text('Hitter Rankings'),
-          onTap: () {
-            context.go(HitterRankingsPage.routeName);
-          },
-        ),
-        ListTile(
           title: const Text('Hitter Projections'),
           onTap: () {
             context.go(HitterProjectionsPage.routeName);
+          },
+        ),
+        ListTile(
+          title: const Text('Starting Pitcher Projections'),
+          onTap: () {
+            context.go(StartingPitcherProjectionsPage.routeName);
+          },
+        ),
+        ListTile(
+          title: const Text('Hitter Rankings'),
+          onTap: () {
+            context.go(HitterRankingsPage.routeName);
           },
         ),
         ListTile(

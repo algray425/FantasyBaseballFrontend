@@ -1,3 +1,4 @@
+import 'package:fantasy_baseball_app/model/StartingPitcherProjection.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:convert';
@@ -17,16 +18,17 @@ import '../model/PitcherPerGameStat.dart';
 
 class PlayerDataSource
 {
-  final String hitterRankingsEndpoint           = "http://localhost:9292/api/v2/players/hitting/stats/";
-  final String hitterProjectionsEndpoint        = "http://localhost:9292/api/v2/players/hitting/projections";
-  final String hitterSummaryEndpoint            = "http://localhost:9292/api/v2/players/hitting/summary/";
-  final String hitterSeasonSummariesEndpoint    = "http://localhost:9292/api/v2/players/hitting/stats/seasonSummaries/";
-  final String hitterPerGameStatsEndpoint       = "http://localhost:9292/api/v2/players/hitting/stats/perGame/";
-  final String pitcherPerGameStatsEndpoint      = "http://localhost:9292/api/v2/players/pitching/stats/perGame/";
-  final String startingPitcherRankingsEndpoint  = "http://localhost:9292/api/v2/players/startingPitchers/stats/";
-  final String reliefPitcherRankingsEndpoint    = "http://localhost:9292/api/v2/players/reliefPitchers/stats/";
-  final String pitcherSummaryEndpoint           = "http://localhost:9292/api/v2/players/pitching/summary/";
-  final String pitcherSeasonSummariesEndpoint   = "http://localhost:9292/api/v2/players/pitching/stats/seasonSummaries/";
+  final String hitterRankingsEndpoint               = "http://localhost:9292/api/v2/players/hitting/stats/";
+  final String hitterProjectionsEndpoint            = "http://localhost:9292/api/v2/players/hitting/projections";
+  final String startingPitchersProjectionsEndpoint  = "http://localhost:9292/api/v2/players/startingPitchers/projections";
+  final String hitterSummaryEndpoint                = "http://localhost:9292/api/v2/players/hitting/summary/";
+  final String hitterSeasonSummariesEndpoint        = "http://localhost:9292/api/v2/players/hitting/stats/seasonSummaries/";
+  final String hitterPerGameStatsEndpoint           = "http://localhost:9292/api/v2/players/hitting/stats/perGame/";
+  final String pitcherPerGameStatsEndpoint          = "http://localhost:9292/api/v2/players/pitching/stats/perGame/";
+  final String startingPitcherRankingsEndpoint      = "http://localhost:9292/api/v2/players/startingPitchers/stats/";
+  final String reliefPitcherRankingsEndpoint        = "http://localhost:9292/api/v2/players/reliefPitchers/stats/";
+  final String pitcherSummaryEndpoint               = "http://localhost:9292/api/v2/players/pitching/summary/";
+  final String pitcherSeasonSummariesEndpoint       = "http://localhost:9292/api/v2/players/pitching/stats/seasonSummaries/";
 
   Future<List<HitterModel>> getHitterByRanks(final int season, final String sortBy, final String position, final String startDate, final String endDate, final String leagueTypeFilter, final String leagueIdFilter,
       final int limit, final int page) async
@@ -53,8 +55,6 @@ class PlayerDataSource
   {
     final url = "$hitterProjectionsEndpoint?sortBy=$sortBy&qualified=$qualified&position=$position&leagueType=$leagueType&leagueId=$leagueId&limit=$limit&page=$page";
 
-    print(url);
-
     final response = await http.get(Uri.parse(url));
 
     final projections = json.decode(response.body) as List;
@@ -64,6 +64,26 @@ class PlayerDataSource
     for (final projection in projections)
     {
       HitterProjection hitterProjection = HitterProjection.fromJson(projection);
+
+      playerProjections.add(hitterProjection);
+    }
+
+    return playerProjections;
+  }
+
+  Future<List<StartingPitcherProjection>> getStartingPitcherProjections(final String sortBy, final String leagueType, final String leagueId, final int limit, final int page) async
+  {
+    final url = "$startingPitchersProjectionsEndpoint?sortBy=$sortBy&leagueType=$leagueType&leagueId=$leagueId&limit=$limit&page=$page";
+
+    final response = await http.get(Uri.parse(url));
+
+    final projections = json.decode(response.body) as List;
+
+    var playerProjections = List<StartingPitcherProjection>.empty(growable: true);
+
+    for (final projection in projections)
+    {
+      StartingPitcherProjection hitterProjection = StartingPitcherProjection.fromJson(projection);
 
       playerProjections.add(hitterProjection);
     }
