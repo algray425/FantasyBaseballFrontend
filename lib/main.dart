@@ -1,5 +1,7 @@
 
 import 'package:fantasy_baseball_app/pages/StartingPitcherProjectionsPage.dart';
+import 'package:fantasy_baseball_app/pages/TeamHittingRankingsPage.dart';
+import 'package:fantasy_baseball_app/pages/TeamPitchingRankingsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -61,6 +63,14 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: ReliefPitcherRankingsPage.routeName,
         builder: (context, state) => ReliefPitcherRankingsPage(),
+      ),
+      GoRoute(
+        path: TeamHittingRankingsPage.routeName,
+        builder: (context, state) => TeamHittingRankingsPage(),
+      ),
+      GoRoute(
+        path: TeamPitchingRankingsPage.routeName,
+        builder: (context, state) => TeamPitchingRankingsPage(),
       ),
       GoRoute(
           path: PitcherPage.routeName,

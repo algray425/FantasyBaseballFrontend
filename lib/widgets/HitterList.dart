@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import '../model/HittingStat.dart';
-import '../notifiers/HitterListModel.dart';
-import '../pages/HitterPage.dart';
+import 'package:fantasy_baseball_app/model/HittingStat.dart';
+import 'package:fantasy_baseball_app/notifiers/HitterListModel.dart';
+import 'package:fantasy_baseball_app/pages/HitterPage.dart';
 import 'HitterListHeader.dart';
 
 class HitterList extends StatelessWidget

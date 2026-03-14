@@ -1,10 +1,10 @@
 import 'dart:convert';
-
-import 'package:fantasy_baseball_app/model/FantasyTeam.dart';
 import 'package:http/http.dart' as http;
 
-import '../model/FantasyTeamSummary.dart';
-import '../model/FavoritePlayerSummary.dart';
+import 'package:fantasy_baseball_app/model/FantasyTeam.dart';
+
+import 'package:fantasy_baseball_app/model/FantasyTeamSummary.dart';
+import 'package:fantasy_baseball_app/model/FavoritePlayerSummary.dart';
 
 class UserDataSource
 {

@@ -1,5 +1,7 @@
 import 'package:fantasy_baseball_app/pages/ReliefPitcherRankingsPage.dart';
 import 'package:fantasy_baseball_app/pages/StartingPitcherProjectionsPage.dart';
+import 'package:fantasy_baseball_app/pages/TeamHittingRankingsPage.dart';
+import 'package:fantasy_baseball_app/pages/TeamPitchingRankingsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -57,6 +59,18 @@ class NavigationList extends StatelessWidget
           title: const Text('Relief Pitcher Rankings'),
           onTap: () {
             context.go(ReliefPitcherRankingsPage.routeName);
+          },
+        ),
+        ListTile(
+          title: const Text('Team Hitting'),
+          onTap: () {
+            context.go(TeamHittingRankingsPage.routeName);
+          },
+        ),
+        ListTile(
+          title: const Text('Team Pitching'),
+          onTap: () {
+            context.go(TeamPitchingRankingsPage.routeName);
           },
         ),
       ]

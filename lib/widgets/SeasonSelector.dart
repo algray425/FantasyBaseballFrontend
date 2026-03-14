@@ -1,9 +1,11 @@
-import 'package:fantasy_baseball_app/notifiers/ReliefPitcherRankingsListModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_baseball_app/notifiers/HitterListModel.dart';
 import 'package:fantasy_baseball_app/notifiers/StartingPitcherRankingListModel.dart';
+import 'package:fantasy_baseball_app/notifiers/ReliefPitcherRankingsListModel.dart';
+import 'package:fantasy_baseball_app/notifiers/TeamHittingModel.dart';
+import 'package:fantasy_baseball_app/notifiers/TeamPitchingModel.dart';
 
 class SeasonSelector extends StatefulWidget
 {
@@ -37,6 +39,14 @@ class SeasonSelectorState extends State<SeasonSelector>
     else if (widget.rankingType == "relief_pitchers")
     {
       season = context.read<ReliefPitcherRankingsListModel>().season;
+    }
+    else if (widget.rankingType == "team_hitting")
+    {
+      season = context.read<TeamHittingModel>().season;
+    }
+    else if (widget.rankingType == "team_pitching")
+    {
+      season = context.read<TeamPitchingModel>().season;
     }
     else
     {
