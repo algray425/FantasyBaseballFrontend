@@ -1,4 +1,6 @@
+import 'package:fantasy_baseball_app/pages/TeamSummaryPage.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fantasy_baseball_app/notifiers/TeamHittingModel.dart';
@@ -51,7 +53,10 @@ class TeamHittingList extends StatelessWidget
                       Expanded(child: Center(child: Text(team.ksPerNineAgainst.toStringAsFixed(1)))),
                     ],
                   ),
-                  onTap: () {},
+                  onTap: ()
+                  {
+                    context.go(TeamSummaryPage.simpleRouteName + team.team);
+                  },
                 ),
                 Divider()
               ]

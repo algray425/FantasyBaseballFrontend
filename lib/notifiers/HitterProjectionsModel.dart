@@ -18,6 +18,7 @@ class HitterProjectionsModel extends ChangeNotifier
   String      _position         = "";
   String      _leagueTypeFilter = "";
   String      _leagueIdFilter   = "";
+  String      _leagueName       = "None";
   int         _limit            = 10;
   int         _page             = 0;
 
@@ -25,11 +26,17 @@ class HitterProjectionsModel extends ChangeNotifier
 
   UnmodifiableListView<HitterProjection> get projections => UnmodifiableListView(_projections);
 
-  bool get finishedLoading => _finishedLoading;
+  bool    get finishedLoading => _finishedLoading;
+  String  get leagueName      => _leagueName;
 
   HitterProjectionsModel()
   {
     updateProjectionList();
+  }
+
+  String getPosition()
+  {
+    return _position.isEmpty ? "All" : _position;
   }
 
   void updateSort(HittingStat stat)
@@ -99,6 +106,8 @@ class HitterProjectionsModel extends ChangeNotifier
       _leagueTypeFilter = team.leagueType;
       _leagueIdFilter   = team.leagueId;
     }
+
+    _leagueName = team.leagueName;
 
     updateProjectionList();
   }

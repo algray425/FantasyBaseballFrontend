@@ -11,11 +11,12 @@ class HitterListModel extends ChangeNotifier
   PlayerDataSource playerDataSource = PlayerDataSource();
 
   bool          _finishedLoading  = false;
-  int           _season           = 2025;
+  int           _season           = 2026;
   HittingStat   _sortBy           = HittingStat.PERCENTILE_OVERALL;
   String        _position         = "";
   String        _leagueTypeFilter = "";
   String        _leagueIdFilter   = "";
+  String        _leagueName       = "None";
   String        _startDate        = "";
   String        _endDate          = "";
   int           _limit            = 10;
@@ -25,12 +26,20 @@ class HitterListModel extends ChangeNotifier
 
   UnmodifiableListView<HitterModel> get players => UnmodifiableListView(_players);
 
-  bool get finishedLoading  => _finishedLoading;
-  int get season            => _season;
+  String  get leagueName        => _leagueName;
+  bool    get finishedLoading   => _finishedLoading;
+  int     get season            => _season;
+  String  get startDate         => _startDate;
+  String  get endDate           => _endDate;
 
   HitterListModel()
   {
     updatePlayerList();
+  }
+
+  String getPosition()
+  {
+    return _position.isEmpty ? "All" : _position;
   }
 
   void updateSeason(int season)
@@ -111,10 +120,10 @@ class HitterListModel extends ChangeNotifier
       _leagueIdFilter   = team.leagueId;
     }
 
+    _leagueName = team.leagueName;
+
     updatePlayerList();
   }
-
-  //({String key, int value}) namedPair = (key: 'orange', value: 3);
 
   void updateDateRanges(({String startDate, String endDate}) dates)
   {

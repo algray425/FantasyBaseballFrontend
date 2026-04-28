@@ -11,7 +11,7 @@ class TeamPitchingModel extends ChangeNotifier
   PlayerDataSource playerDataSource = PlayerDataSource();
 
   bool _finishedLoading = false;
-  int _season           = 2025;
+  int _season           = 2026;
 
   List<TeamPitchingStats> _teams = [];
 

@@ -1,3 +1,4 @@
+import 'package:fantasy_baseball_app/model/PageType.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,9 +21,8 @@ class TeamPitchingRankingsPage extends StatelessWidget
         drawer: Drawer(
           child: NavigationList()
         ),
-        body: ChangeNotifierProvider(
-          create: (context) => TeamPitchingModel(),
-          child: Column(
+        body:
+          Column(
             children: [
               Row(
                 children: [
@@ -32,15 +32,14 @@ class TeamPitchingRankingsPage extends StatelessWidget
                   ),
                   Consumer<TeamPitchingModel>(
                     builder: (context, teamPitchingModel, child) {
-                      return SeasonSelector(callback: Provider.of<TeamPitchingModel>(context, listen: false).updateSeason, rankingType: "team_pitching");
+                      return SeasonSelector(pageType: PageType.TEAM_PITCHING, callback: Provider.of<TeamPitchingModel>(context, listen: false).updateSeason);
                     }
                   ),
                 ]
               ),
               Expanded(child: TeamPitchingList())
             ],
-          ),
-        )
+          )
     );
   }
 }

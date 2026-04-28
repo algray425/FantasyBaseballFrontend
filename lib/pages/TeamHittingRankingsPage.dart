@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:fantasy_baseball_app/model/PageType.dart';
 import 'package:fantasy_baseball_app/notifiers/TeamHittingModel.dart';
 import 'package:fantasy_baseball_app/widgets/HeaderBar.dart';
 import 'package:fantasy_baseball_app/widgets/NavigationDrawer.dart';
@@ -20,9 +21,8 @@ class TeamHittingRankingsPage extends StatelessWidget
       drawer: Drawer(
         child: NavigationList()
       ),
-      body: ChangeNotifierProvider(
-        create: (context) => TeamHittingModel(),
-        child: Column(
+      body:
+        Column(
           children: [
             Row(
               children: [
@@ -32,7 +32,7 @@ class TeamHittingRankingsPage extends StatelessWidget
                 ),
                 Consumer<TeamHittingModel>(
                   builder: (context, teamHittingModel, child) {
-                    return SeasonSelector(callback: Provider.of<TeamHittingModel>(context, listen: false).updateSeason, rankingType: "team_hitting");
+                    return SeasonSelector(pageType: PageType.TEAM_HITTING,callback: Provider.of<TeamHittingModel>(context, listen: false).updateSeason);
                   }
                 ),
               ]
@@ -40,7 +40,6 @@ class TeamHittingRankingsPage extends StatelessWidget
             Expanded(child: TeamHittingList())
           ]
         )
-      )
     );
   }
 }

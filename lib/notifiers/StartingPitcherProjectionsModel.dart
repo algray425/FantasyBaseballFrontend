@@ -13,8 +13,10 @@ class StartingPitcherProjectionsModel extends ChangeNotifier
 
   bool          _finishedLoading  = false;
   PitchingStat  _sortBy           = PitchingStat.PERCENTILE_OVERALL;
+  String        _team             = "";
   String        _leagueTypeFilter = "";
   String        _leagueIdFilter   = "";
+  String        _leagueName       = "None";
   int           _limit            = 10;
   int           _page             = 0;
 
@@ -22,7 +24,8 @@ class StartingPitcherProjectionsModel extends ChangeNotifier
 
   UnmodifiableListView<StartingPitcherProjection> get projections => UnmodifiableListView(_projections);
 
-  bool get finishedLoading => _finishedLoading;
+  bool    get finishedLoading => _finishedLoading;
+  String  get leagueName      => _leagueName;
 
   StartingPitcherProjectionsModel()
   {
@@ -68,6 +71,17 @@ class StartingPitcherProjectionsModel extends ChangeNotifier
     updateProjectionList();
   }
 
+  void updatePlayerTeamFilter(String team)
+  {
+    _finishedLoading = false;
+
+    notifyListeners();
+
+    _team = team == "None" ? "" : team;
+
+    updateProjectionList();
+  }
+
   void updateTeamFilter(FantasyTeam team)
   {
     _finishedLoading = false;
@@ -85,12 +99,14 @@ class StartingPitcherProjectionsModel extends ChangeNotifier
       _leagueIdFilter   = team.leagueId;
     }
 
+    _leagueName = team.leagueName;
+
     updateProjectionList();
   }
 
   void updateProjectionList()
   {
-    playerDataSource.getStartingPitcherProjections(_sortBy.name, _leagueTypeFilter, _leagueIdFilter, _limit, _page).then((List<StartingPitcherProjection> projections){
+    playerDataSource.getStartingPitcherProjections(_sortBy.name, _team, _leagueTypeFilter, _leagueIdFilter, _limit, _page).then((List<StartingPitcherProjection> projections){
       _projections      = projections;
       _finishedLoading  = true;
 

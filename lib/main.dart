@@ -1,7 +1,14 @@
 
+import 'package:fantasy_baseball_app/notifiers/AuthorizationModel.dart';
+import 'package:fantasy_baseball_app/notifiers/HitterListModel.dart';
+import 'package:fantasy_baseball_app/notifiers/HitterProjectionsModel.dart';
+import 'package:fantasy_baseball_app/notifiers/StartingPitcherProjectionsModel.dart';
+import 'package:fantasy_baseball_app/notifiers/TeamHittingModel.dart';
+import 'package:fantasy_baseball_app/pages/LoginPage.dart';
 import 'package:fantasy_baseball_app/pages/StartingPitcherProjectionsPage.dart';
 import 'package:fantasy_baseball_app/pages/TeamHittingRankingsPage.dart';
 import 'package:fantasy_baseball_app/pages/TeamPitchingRankingsPage.dart';
+import 'package:fantasy_baseball_app/pages/TeamSummaryPage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -17,13 +24,23 @@ import 'package:fantasy_baseball_app/pages/StartingPitcherRankingsPage.dart';
 import 'package:fantasy_baseball_app/pages/PitcherPage.dart';
 import 'package:fantasy_baseball_app/pages/ReliefPitcherRankingsPage.dart';
 
+import 'notifiers/ReliefPitcherRankingsListModel.dart';
+import 'notifiers/TeamPitchingModel.dart';
+
 void main()
 {
   runApp(
       MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => FavoritePlayersModel()),
-          ChangeNotifierProvider(create: (context) => StartingPitcherRankingListModel())
+          ChangeNotifierProvider(create: (context) => AuthorizationModel()),
+          ChangeNotifierProvider(create: (context) => StartingPitcherRankingListModel()),
+          ChangeNotifierProvider(create: (context) => ReliefPitcherRankingsListModel()),
+          ChangeNotifierProvider(create: (context) => HitterListModel()),
+          ChangeNotifierProvider(create: (context) => HitterProjectionsModel()),
+          ChangeNotifierProvider(create: (context) => StartingPitcherProjectionsModel()),
+          ChangeNotifierProvider(create: (context) => TeamPitchingModel()),
+          ChangeNotifierProvider(create: (context) => TeamHittingModel()),
         ],
         child: MyApp()
       )
@@ -36,6 +53,10 @@ class MyApp extends StatelessWidget {
   final GoRouter router = GoRouter(
     initialLocation: HitterRankingsPage.routeName,
     routes: [
+      GoRoute(
+        path: LoginPage.routeName,
+        builder: (context, state) => LoginPage(),
+      ),
       GoRoute(
         path: HitterRankingsPage.routeName,
         builder: (context, state) => HitterRankingsPage(),
@@ -96,6 +117,15 @@ class MyApp extends StatelessWidget {
           return FantasyTeamHomePage(leagueType: leagueType, leagueId: leagueId, teamId: teamId, userId: userId);
         }
       ),
+      GoRoute(
+          path: TeamSummaryPage.routeName,
+          builder: (context, state)
+          {
+            final teamId  = state.pathParameters['teamId']!;
+
+            return TeamSummaryPage(teamId: teamId);
+          }
+      )
     ],
   );
 

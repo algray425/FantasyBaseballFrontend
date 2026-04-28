@@ -12,18 +12,22 @@ class StartingPitcherRankingListModel extends ChangeNotifier
 
   bool                          _finishedLoading  = false;
   List<StartingPitcherSummary>  _pitchers         = [];
-  int                           _season           = 2025;
+  int                           _season           = 2026;
   PitchingStat                  _sortBy           = PitchingStat.PERCENTILE_OVERALL;
   String                        _startDate        = "";
   String                        _endDate          = "";
   String                        _leagueTypeFilter = "";
   String                        _leagueIdFilter   = "";
+  String                        _leagueName       = "None";
   int                           _limit            = 10;
   int                           _page             = 0;
 
   UnmodifiableListView<StartingPitcherSummary>  get pitchers        => UnmodifiableListView(_pitchers);
   bool                                          get finishedLoading => _finishedLoading;
   int                                           get season          => _season;
+  String                                        get leagueName      => _leagueName;
+  String                                        get startDate       => _startDate;
+  String                                        get endDate         => _endDate;
 
   StartingPitcherRankingListModel()
   {
@@ -84,6 +88,8 @@ class StartingPitcherRankingListModel extends ChangeNotifier
       _leagueTypeFilter = team.leagueType;
       _leagueIdFilter   = team.leagueId;
     }
+
+    _leagueName = team.leagueName;
 
     updateStartingPitcherList();
   }

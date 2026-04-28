@@ -14,7 +14,7 @@ class PitcherSummaryBody extends StatefulWidget
 
   final String id;
 
-  final List<int>     seasons = [2025, 2024, 2023];
+  final List<int>     seasons = [2026, 2025, 2024, 2023];
   final List<String>  stats = ["QUALITY_STARTS", "SAVES", "HOLDS", "ERA", "WHIP", "KS_PER_NINE"];
 
   final Map<String, Color> statToColor = {
@@ -46,7 +46,7 @@ class PitcherSummaryBodyState extends State<PitcherSummaryBody>
   bool                      finishedLoadingPitcherSummary           = false;
   bool                      finishedLoadingPitcherSeasonSummaries   = false;
   Map<String, List<FlSpot>> chartStat                               = {};
-  int                       selectedSeason                          = 2025;
+  int                       selectedSeason                          = 2026;
   String                    selectedStat                            = "QUALITY_STARTS";
 
   late PitcherSummary             pitcherSummary;
@@ -75,7 +75,7 @@ class PitcherSummaryBodyState extends State<PitcherSummaryBody>
   @override
   Widget build(BuildContext context)
   {
-    if (finishedLoadingPitcherSummary) {
+    if (finishedLoadingPitcherSummary && finishedLoadingPitcherSeasonSummaries) {
       return Column(
         children: [
           Row(
@@ -404,7 +404,15 @@ class PitcherSummaryBodyState extends State<PitcherSummaryBody>
                             alignment: Alignment.center,
                             child: Row(
                               children: [
-                                Expanded(child: Container(alignment: Alignment.center, child: Text(game.opposingTeam, style: TextStyle(fontSize: 12)))),
+                                Expanded(child: Container(alignment: Alignment.center, child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children:
+                                    [
+                                      if (game.isStarting)
+                                        Icon(Icons.check, color: Colors.lightGreen),
+                                      Text(game.opposingTeam, style: TextStyle(fontSize: 12))
+                                    ]
+                                ))),
                                 Expanded(child: Container(alignment: Alignment.center, child: Text(game.venue, style: TextStyle(fontSize: 12)))),
                                 Expanded(child: Container(alignment: Alignment.center, child: Text(game.date, style: TextStyle(fontSize: 12)))),
                                 Expanded(child: Container(alignment: Alignment.center, child: Text(getOpposingTeamGradeFromGame(game), style: TextStyle(fontSize: 12)))),

@@ -1,12 +1,15 @@
 import 'package:fantasy_baseball_app/data/UserDataSource.dart';
 import 'package:fantasy_baseball_app/model/ReliefPitcherSummary.dart';
 import 'package:fantasy_baseball_app/model/StartingPitcherSummary.dart';
+import 'package:fantasy_baseball_app/pages/PitcherPage.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../model/FantasyTeamSummary.dart';
 import '../model/HitterModel.dart';
 import '../model/HittingStat.dart';
 import '../model/PitchingStat.dart';
+import '../pages/HitterPage.dart';
 
 class FantasyTeamSummaryWidget extends StatefulWidget
 {
@@ -214,7 +217,7 @@ class FantasyTeamSummaryWidgetState extends State<FantasyTeamSummaryWidget>
                             child: Row(
                               children: [
                                 Expanded(child: Text(hitter.name,style: TextStyle(fontSize: 12))),
-                                Expanded(child: Text("n/a",style: TextStyle(fontSize: 12))),
+                                Expanded(child: Text(hitter.team,style: TextStyle(fontSize: 12))),
                                 Expanded(child: Text(hitter.position,style: TextStyle(fontSize: 12))),
                                 Expanded(child: Text(getLetterGradeFromPercentile(hitter.overallPercentile),style: TextStyle(fontSize: 12))),
                                 Expanded(child: Text(hitter.runs.toString(),style: TextStyle(fontSize: 12))),
@@ -226,7 +229,11 @@ class FantasyTeamSummaryWidgetState extends State<FantasyTeamSummaryWidget>
                             )
                           ),
                         ]
-                      )
+                      ),
+                      onTap: ()
+                      {
+                        context.go(HitterPage.simpleRouteName + hitter.id);
+                      },
                     ),
                     Divider()
                   ]
@@ -295,7 +302,11 @@ class FantasyTeamSummaryWidgetState extends State<FantasyTeamSummaryWidget>
                               )
                             ),
                           ]
-                        )
+                        ),
+                        onTap: ()
+                        {
+                          context.go(PitcherPage.simpleRouteName + pitcher.id);
+                        },
                       ),
                       Divider()
                     ]
@@ -359,7 +370,11 @@ class FantasyTeamSummaryWidgetState extends State<FantasyTeamSummaryWidget>
                                 )
                               ),
                             ]
-                          )
+                          ),
+                          onTap: ()
+                          {
+                            context.go(PitcherPage.simpleRouteName + pitcher.id);
+                          },
                         ),
                         Divider()
                       ]

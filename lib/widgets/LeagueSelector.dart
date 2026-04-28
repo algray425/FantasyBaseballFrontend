@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:fantasy_baseball_app/data/UserDataSource.dart';
 import 'package:fantasy_baseball_app/model/FantasyTeam.dart';
+import 'package:fantasy_baseball_app/model/PageType.dart';
+import 'package:fantasy_baseball_app/notifiers/HitterListModel.dart';
+import 'package:fantasy_baseball_app/notifiers/HitterProjectionsModel.dart';
+import 'package:fantasy_baseball_app/notifiers/ReliefPitcherRankingsListModel.dart';
+import 'package:fantasy_baseball_app/notifiers/StartingPitcherProjectionsModel.dart';
+import 'package:fantasy_baseball_app/notifiers/StartingPitcherRankingListModel.dart';
 
 class LeagueSelector extends StatefulWidget
 {
   final UserDataSource              userDataSource = UserDataSource();
   final String                      userId;
+  final PageType                    pageType;
   final void Function(FantasyTeam)  callback;
 
-  LeagueSelector({super.key, required this.userId, required this.callback});
+  LeagueSelector({super.key, required this.userId, required this.pageType, required this.callback});
 
   @override
   LeagueSelectorState createState() => LeagueSelectorState();
@@ -36,11 +44,11 @@ class LeagueSelectorState extends State<LeagueSelector>
 
         fantasyTeams.insert(0, noneTeam);
 
-        teamKeyToFantasyTeam[noneTeam.teamName] = noneTeam;
+        teamKeyToFantasyTeam[noneTeam.leagueName] = noneTeam;
 
         for (final team in fantasyTeams)
         {
-          teamKeyToFantasyTeam[team.teamName] = team;
+          teamKeyToFantasyTeam[team.leagueName] = team;
         }
 
         finishedLoadingTeams = true;
@@ -53,10 +61,33 @@ class LeagueSelectorState extends State<LeagueSelector>
   {
     if (finishedLoadingTeams)
     {
+      String modelTeam = "None";
+
+      if (widget.pageType == PageType.HITTER_RANKINGS)
+      {
+        modelTeam = context.read<HitterListModel>().leagueName;
+      }
+      else if (widget.pageType == PageType.STARTING_PITCHER_RANKINGS)
+      {
+        modelTeam = context.read<StartingPitcherRankingListModel>().leagueName;
+      }
+      else if (widget.pageType == PageType.RELIEF_PITCHER_RANKINGS)
+      {
+        modelTeam = context.read<ReliefPitcherRankingsListModel>().leagueName;
+      }
+      else if (widget.pageType == PageType.HITTER_PROJECTIONS)
+      {
+        modelTeam = context.read<HitterProjectionsModel>().leagueName;
+      }
+      else if (widget.pageType == PageType.STARTING_PITCHER_PROJECTIONS)
+      {
+        modelTeam = context.read<StartingPitcherProjectionsModel>().leagueName;
+      }
+
       return DropdownButton(
-          value: selectedTeam,
+          value: modelTeam,
           items: fantasyTeams.map((FantasyTeam team){
-            return DropdownMenuItem(value: team.teamName, child: Text(team.teamName));
+            return DropdownMenuItem(value: team.leagueName, child: Text(team.leagueName));
           }).toList(),
           onChanged: (String? newValue){
             setState(() {

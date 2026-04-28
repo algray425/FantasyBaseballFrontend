@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../pages/LoginPage.dart';
 
 class HeaderBar extends StatelessWidget implements PreferredSizeWidget
 {
@@ -10,7 +13,13 @@ class HeaderBar extends StatelessWidget implements PreferredSizeWidget
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(title),
-      backgroundColor: Colors.lightBlue
+      backgroundColor: Colors.lightBlue,
+      actions: [
+        IconButton(onPressed: (){
+          context.go(LoginPage.routeName);
+        },
+        icon: Icon(Icons.account_circle_outlined))
+      ],
     );
   }
 

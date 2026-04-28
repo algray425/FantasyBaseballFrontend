@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import 'package:fantasy_baseball_app/model/UserValidationIdentifiers.dart';
 import 'package:fantasy_baseball_app/model/FantasyTeam.dart';
-
 import 'package:fantasy_baseball_app/model/FantasyTeamSummary.dart';
 import 'package:fantasy_baseball_app/model/FavoritePlayerSummary.dart';
+import 'package:fantasy_baseball_app/model/UserInfo.dart';
 
 class UserDataSource
 {
@@ -13,6 +14,7 @@ class UserDataSource
   final String removeFavoritePlayerEndPoint   = "http://localhost:9292/api/v2/users/deleteFavoritePlayer/";
   final String getFantasyTeamsEndPoint        = "http://localhost:9292/api/v2/users/getFantasyTeams/";
   final String getFantasyTeamSummaryEndPoint  = "http://localhost:9292/api/v2/users/fantasyTeamSummary/";
+  final String validateUserEndPoint           = "http://localhost:9292/api/v2/users/validateUser";
 
   Future<Map<String, Set<FavoritePlayerSummary>>> getFavoritePlayersForUser(String userId) async
   {
@@ -84,6 +86,8 @@ class UserDataSource
   {
     final url = "$getFantasyTeamSummaryEndPoint$userId/$leagueType/$leagueId/$teamId";
 
+    print(url);
+
     final response = await http.get(Uri.parse(url));
 
     final summarySections = json.decode(response.body) as Map<String, dynamic>;
@@ -91,5 +95,25 @@ class UserDataSource
     final fantasyTeamSummary = FantasyTeamSummary.fromJson(summarySections);
 
     return fantasyTeamSummary;
+  }
+
+  Future<UserInfo?> validateUser(UserValidationIdentifiers identifiers) async
+  {
+    final headers = {'Content-Type': 'application/json; charset=UTF-8'};
+
+    final requestBody = jsonEncode(identifiers.toJson());
+
+    final response = await http.post(Uri.parse(validateUserEndPoint), headers: headers, body: requestBody);
+
+    if (response.statusCode == 200)
+    {
+      final userInfoJson = json.decode(response.body);
+
+      return UserInfo.fromJson(userInfoJson);
+    }
+    else
+    {
+      return null;
+    }
   }
 }

@@ -14,7 +14,7 @@ class HitterPageHeader extends StatefulWidget
 
   final String id;
 
-  final List<int>     seasons = [2025, 2024, 2023];
+  final List<int>     seasons = [2026, 2025, 2024, 2023];
   final List<String>  stats = ["RUNS", "HOME_RUNS", "RBIS", "STOLEN_BASES", "OBP"];
 
   final Map<String, Color> statToColor = {
@@ -48,7 +48,7 @@ class HitterPageHeaderState extends State<HitterPageHeader>
   late List<HitterSeasonSummary>  seasonSummaries;
   Map<String, List<FlSpot>>       chartStat = {};
 
-  int     selectedSeason  = 2025;
+  int     selectedSeason  = 2026;
   String  selectedStat    = "RUNS";
 
   @override
@@ -637,6 +637,10 @@ class HitterPageHeaderState extends State<HitterPageHeader>
     else if (percentile >= 60.0)
     {
       return "D";
+    }
+    else if (percentile == -1.0)
+    {
+      return "none";
     }
     else
     {

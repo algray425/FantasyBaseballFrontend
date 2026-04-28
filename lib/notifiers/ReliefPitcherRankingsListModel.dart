@@ -12,19 +12,23 @@ class ReliefPitcherRankingsListModel extends ChangeNotifier
   PlayerDataSource playerDataSource = PlayerDataSource();
 
   bool                          _finishedLoading  = false;
-  int                           _season           = 2025;
+  int                           _season           = 2026;
   List<ReliefPitcherSummary>    _pitchers         = [];
   PitchingStat                  _sortBy           = PitchingStat.PERCENTILE_OVERALL;
   String                        _startDate        = "";
   String                        _endDate          = "";
   String                        _leagueTypeFilter = "";
   String                        _leagueIdFilter   = "";
+  String                        _leagueName       = "None";
   int                           _limit            = 10;
   int                           _page             = 0;
 
   UnmodifiableListView<ReliefPitcherSummary>  get pitchers        => UnmodifiableListView(_pitchers);
   bool                                        get finishedLoading => _finishedLoading;
   int                                         get season          => _season;
+  String                                      get leagueName      => _leagueName;
+  String                                      get startDate       => _startDate;
+  String                                      get endDate         => _endDate;
 
   ReliefPitcherRankingsListModel()
   {
@@ -58,6 +62,8 @@ class ReliefPitcherRankingsListModel extends ChangeNotifier
       _leagueTypeFilter = team.leagueType;
       _leagueIdFilter   = team.leagueId;
     }
+
+    _leagueName = team.leagueName;
 
     updateReliefPitcherList();
   }
