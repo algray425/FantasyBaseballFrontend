@@ -43,6 +43,7 @@ class PitcherSeasonSummary
   final double walkPercentage;
   final double strikeOutWalkDifference;
   final double homeRunPerFlyBallPercentage;
+  final double fip;
 
   const PitcherSeasonSummary({
     required this.season,
@@ -88,6 +89,7 @@ class PitcherSeasonSummary
     required this.walkPercentage,
     required this.strikeOutWalkDifference,
     required this.homeRunPerFlyBallPercentage,
+    required this.fip
   });
 
   factory PitcherSeasonSummary.fromJson(Map<String, dynamic> json) {
@@ -136,6 +138,7 @@ class PitcherSeasonSummary
       'walkPercentage': double walkPercentage,
       'strikeOutWalkDifference': double strikeOutWalkDifference,
       'homeRunPerFlyBallPercentage': double homeRunPerFlyBallPercentage,
+      'fip': double fip
       } =>
           PitcherSeasonSummary(
             season: season,
@@ -181,6 +184,7 @@ class PitcherSeasonSummary
             walkPercentage: walkPercentage,
             strikeOutWalkDifference: strikeOutWalkDifference,
             homeRunPerFlyBallPercentage: homeRunPerFlyBallPercentage,
+            fip: fip
           ),
       _ => throw const FormatException("Could not read team pitching stats!"),
     };

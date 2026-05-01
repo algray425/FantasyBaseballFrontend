@@ -305,6 +305,7 @@ class PitcherSummaryBodyState extends State<PitcherSummaryBody>
                                       Expanded(child: Container(alignment: Alignment.center, child: Text("K %", style: TextStyle(fontSize: 12)))),
                                       Expanded(child: Container(alignment: Alignment.center, child: Text("W %", style: TextStyle(fontSize: 12)))),
                                       Expanded(child: Container(alignment: Alignment.center, child: Text("K% - W%", style: TextStyle(fontSize: 12)))),
+                                      Expanded(child: Container(alignment: Alignment.center, child: Text("FIP", style: TextStyle(fontSize: 12)))),
                                       Expanded(child: Container(alignment: Alignment.center, child: Text("HR/FB%", style: TextStyle(fontSize: 12)))),
                                     ]
                                 )
@@ -340,6 +341,7 @@ class PitcherSummaryBodyState extends State<PitcherSummaryBody>
                                         Expanded(child: Container(alignment: Alignment.center, child: Text((summary.strikeOutPercentage * 100.0).toStringAsFixed(1), style: TextStyle(fontSize: 12)))),
                                         Expanded(child: Container(alignment: Alignment.center, child: Text((summary.walkPercentage * 100.0).toStringAsFixed(1), style: TextStyle(fontSize: 12)))),
                                         Expanded(child: Container(alignment: Alignment.center, child: Text((summary.strikeOutWalkDifference * 100.0).toStringAsFixed(1), style: TextStyle(fontSize: 12)))),
+                                        Expanded(child: Container(alignment: Alignment.center, child: Text(summary.fip.toStringAsFixed(2), style: TextStyle(fontSize: 12)))),
                                         Expanded(child: Container(alignment: Alignment.center, child: Text((summary.homeRunPerFlyBallPercentage * 100.0).toStringAsFixed(1), style: TextStyle(fontSize: 12)))),
                                       ]
                                   )
