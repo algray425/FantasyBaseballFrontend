@@ -7,6 +7,7 @@ import 'package:fantasy_baseball_app/data/PlayerDataSource.dart';
 import 'package:fantasy_baseball_app/model/PitcherSummary.dart';
 import '../model/PitcherPerGameStat.dart';
 import 'FavoriteButton.dart';
+import 'PitchingPercentiles.dart';
 
 class PitcherSummaryBody extends StatefulWidget
 {
@@ -145,6 +146,24 @@ class PitcherSummaryBodyState extends State<PitcherSummaryBody>
             ],
           ),
           Divider(),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Percentiles",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24.0
+                    ),
+                  )
+                )
+              )
+            ],
+          ),
+          PitchingPercentiles(pitcherSummary: pitcherSummary),
           Row(
             children: [
               Expanded(

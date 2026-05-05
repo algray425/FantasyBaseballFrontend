@@ -1,15 +1,15 @@
-import 'package:fantasy_baseball_app/data/UserDataSource.dart';
-import 'package:fantasy_baseball_app/model/ReliefPitcherSummary.dart';
-import 'package:fantasy_baseball_app/model/StartingPitcherSummary.dart';
-import 'package:fantasy_baseball_app/pages/PitcherPage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../model/FantasyTeamSummary.dart';
-import '../model/HitterModel.dart';
-import '../model/HittingStat.dart';
-import '../model/PitchingStat.dart';
-import '../pages/HitterPage.dart';
+import 'package:fantasy_baseball_app/data/UserDataSource.dart';
+import 'package:fantasy_baseball_app/model/ReliefPitcherSummary.dart';
+import 'package:fantasy_baseball_app/model/StartingPitcherSummary.dart';
+import 'package:fantasy_baseball_app/model/FantasyTeamSummary.dart';
+import 'package:fantasy_baseball_app/model/HitterModel.dart';
+import 'package:fantasy_baseball_app/model/HittingStat.dart';
+import 'package:fantasy_baseball_app/model/PitchingStat.dart';
+import 'package:fantasy_baseball_app/pages/HitterPage.dart';
+import 'package:fantasy_baseball_app/pages/PitcherPage.dart';
 
 class FantasyTeamSummaryWidget extends StatefulWidget
 {

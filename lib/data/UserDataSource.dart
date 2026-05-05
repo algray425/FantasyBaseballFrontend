@@ -86,8 +86,6 @@ class UserDataSource
   {
     final url = "$getFantasyTeamSummaryEndPoint$userId/$leagueType/$leagueId/$teamId";
 
-    print(url);
-
     final response = await http.get(Uri.parse(url));
 
     final summarySections = json.decode(response.body) as Map<String, dynamic>;
