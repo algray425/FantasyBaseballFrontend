@@ -32,16 +32,28 @@ class StatPercentileBar extends StatelessWidget
         Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              LinearPercentIndicator(
-                width: 340.0,
-                lineHeight: 18.0,
-                barRadius: const Radius.circular(10.0),
-                percent: getConvertedPercentile(percentile),
-                backgroundColor: Colors.grey,
-                progressColor: getProgressColor(percentile),
-                center: Text(
-                  percentile!.toStringAsFixed(2),
-                  style: TextStyle(fontSize: 12.0),
+              Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      blurRadius: 7.0,
+                      offset: Offset(4, 5), // Shadow position
+                    ),
+                  ],
+                borderRadius: BorderRadius.circular(10), // Match border radius
+                ),
+                child: LinearPercentIndicator(
+                  width: 340.0,
+                  lineHeight: 18.0,
+                  barRadius: const Radius.circular(10.0),
+                  percent: getConvertedPercentile(percentile),
+                  backgroundColor: Colors.grey,
+                  progressColor: getProgressColor(percentile),
+                  center: Text(
+                    percentile!.toStringAsFixed(2),
+                    style: TextStyle(fontSize: 12.0),
+                  ),
                 ),
               )
             ]
