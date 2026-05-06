@@ -16,13 +16,16 @@ class PitcherSummary
   final double? percentileQualityStarts;
   final double? percentileSavesAndHolds;
   final double? percentileFip;
+  final double? percentileStrikeOutWalkDifference;
+  final double? percentileCsw;
   final double? percentileOverall;
   final List<PitcherGame> upcomingSchedule;
 
   const PitcherSummary({required this.id, required this.name, required this.age, required this.batSide, required this.throwSide,
     required this.height, required this.weight, required this.team, required this.percentileEra, required this.percentileWhip,
     required this.percentileKsPerNine, required this.percentileQualityStarts, required this.percentileSavesAndHolds,
-    required this.percentileFip, required this.percentileOverall, required this.upcomingSchedule});
+    required this.percentileFip, required this. percentileStrikeOutWalkDifference, required this.percentileCsw,
+    required this.percentileOverall, required this.upcomingSchedule});
 
   factory PitcherSummary.fromJson(Map<String, dynamic> json)
   {
@@ -31,7 +34,8 @@ class PitcherSummary
       'height': String height, 'weight': double weight, 'currentTeam': String currentTeam, 'upcomingSchedule': List<dynamic> games,
       'percentileEra': final percentileEra, 'percentileWhip': final percentileWhip, 'percentileKsPerNine': final percentileKsPerNine,
       'percentileQualityStarts': final percentileQualityStarts, 'percentileSavesAndHolds': final percentileSavesAndHolds,
-      'percentileFip': final percentileFip, 'percentileOverall': final percentileOverall} =>
+      'percentileFip': final percentileFip, 'percentileStrikeOutWalkDifference': final percentileStrikeOutWalkDifference,
+      'percentileCsw': final percentileCsw, 'percentileOverall': final percentileOverall} =>
           PitcherSummary(
             id: playerId,
             name: '$firstName $lastName',
@@ -41,14 +45,16 @@ class PitcherSummary
             height: height,
             weight: weight,
             team: currentTeam,
-            upcomingSchedule: games.map((game) => PitcherGame.fromJson(game)).toList(),
             percentileEra: percentileEra,
             percentileWhip: percentileWhip,
             percentileKsPerNine: percentileKsPerNine,
             percentileQualityStarts: percentileQualityStarts,
             percentileSavesAndHolds: percentileSavesAndHolds,
             percentileFip: percentileFip,
+            percentileStrikeOutWalkDifference: percentileStrikeOutWalkDifference,
+            percentileCsw: percentileCsw,
             percentileOverall: percentileOverall,
+            upcomingSchedule: games.map((game) => PitcherGame.fromJson(game)).toList(),
           ),
       _ => throw const FormatException("Could not parse pitcher summary!")
     };

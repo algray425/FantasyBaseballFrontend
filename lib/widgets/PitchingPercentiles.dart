@@ -31,6 +31,12 @@ class PitchingPercentiles extends StatelessWidget
         if (pitcherSummary.percentileFip != null)...[
           StatPercentileBar(statName: "FIP", percentile: pitcherSummary.percentileFip)
         ],
+        if (pitcherSummary.percentileStrikeOutWalkDifference != null)...[
+          StatPercentileBar(statName: "K%-W%", percentile: pitcherSummary.percentileStrikeOutWalkDifference)
+        ],
+        if (pitcherSummary.percentileCsw != null)...[
+          StatPercentileBar(statName: "CSW%", percentile: pitcherSummary.percentileCsw)
+        ],
         if (pitcherSummary.percentileOverall != null)...[
           StatPercentileBar(statName: "Overall", percentile: pitcherSummary.percentileOverall)
         ]
