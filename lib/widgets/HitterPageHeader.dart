@@ -8,6 +8,8 @@ import 'package:fantasy_baseball_app/model/HitterSeasonSummary.dart';
 import 'package:fantasy_baseball_app/model/HitterSummary.dart';
 import 'package:fantasy_baseball_app/widgets/FavoriteButton.dart';
 
+import 'BattingPercentiles.dart';
+
 class HitterPageHeader extends StatefulWidget
 {
   final PlayerDataSource playerDataSource = PlayerDataSource();
@@ -225,6 +227,24 @@ class HitterPageHeaderState extends State<HitterPageHeader>
               Divider()
             ]
           ),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Percentiles",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24.0
+                    ),
+                  )
+                )
+              )
+            ],
+          ),
+          BattingPercentiles(hitterSummary: hitterSummary),
           Row(
             children: [
               Expanded(

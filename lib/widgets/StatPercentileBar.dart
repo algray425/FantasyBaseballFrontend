@@ -38,10 +38,10 @@ class StatPercentileBar extends StatelessWidget
                     BoxShadow(
                       color: Colors.black.withOpacity(0.2),
                       blurRadius: 7.0,
-                      offset: Offset(4, 5), // Shadow position
+                      offset: Offset(4, 5),
                     ),
                   ],
-                borderRadius: BorderRadius.circular(10), // Match border radius
+                borderRadius: BorderRadius.circular(10),
                 ),
                 child: LinearPercentIndicator(
                   width: 340.0,

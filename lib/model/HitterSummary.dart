@@ -28,6 +28,10 @@ class HitterSummary
   final double qualifiedPercentileStolenBases;
   final double qualifiedPercentileObp;
   final double qualifiedPercentileGrade;
+  final double hardHitPercentile;
+  final double barrelPercentile;
+  final double babipPercentile;
+  final double spdPercentile;
   final List<HitterGame> upcomingSchedule;
 
   const HitterSummary({required this.id, required this.name, required this.age, required this.batSide, required this.throwSide,
@@ -35,7 +39,8 @@ class HitterSummary
     required this.rbis, required this.stolenBases, required this.obp, required this.overallPercentileRuns, required this.overallPercentileHomeRuns,
     required this.overallPercentileRbis, required this.overallPercentileStolenBases, required this.overallPercentileObp, required this.overallPercentileGrade,
     required this.qualifiedPercentileRuns, required this.qualifiedPercentileHomeRuns, required this.qualifiedPercentileRbis,
-    required this.qualifiedPercentileStolenBases, required this.qualifiedPercentileObp, required this.qualifiedPercentileGrade, required this.upcomingSchedule});
+    required this.qualifiedPercentileStolenBases, required this.qualifiedPercentileObp, required this.qualifiedPercentileGrade, required this.hardHitPercentile,
+    required this.barrelPercentile, required this.babipPercentile, required this.spdPercentile, required this.upcomingSchedule});
 
   factory HitterSummary.fromJson(Map<String, dynamic> json)
   {
@@ -48,7 +53,8 @@ class HitterSummary
       'overallPercentilePredictedGrade': double overallPercentileGrade, 'qualifiedPercentilePredictedRuns': double qualifiedPercentileRuns,
       'qualifiedPercentilePredictedHomeRuns': double qualifiedPercentileHomeRuns, 'qualifiedPercentilePredictedRbis': double qualifiedPercentileRbis,
       'qualifiedPercentilePredictedStolenBases': double qualifiedPercentileStolenBases, 'qualifiedPercentilePredictedObp': double qualifiedPercentileObp,
-      'qualifiedPercentilePredictedGrade': double qualifiedPercentileGrade, 'upcomingSchedule': List<dynamic> games} =>
+      'qualifiedPercentilePredictedGrade': double qualifiedPercentileGrade, 'hardHitPercentile': double hardHitPercentile,
+      'barrelPercentile': double barrelPercentile, 'babipPercentile': double babipPercentile, 'spdPercentile': double spdPercentile, 'upcomingSchedule': List<dynamic> games} =>
         HitterSummary(
           id: playerId,
           name: '$firstName $lastName',
@@ -76,6 +82,10 @@ class HitterSummary
           qualifiedPercentileStolenBases: qualifiedPercentileStolenBases,
           qualifiedPercentileObp: qualifiedPercentileObp,
           qualifiedPercentileGrade: qualifiedPercentileGrade,
+          hardHitPercentile: hardHitPercentile,
+          barrelPercentile: barrelPercentile,
+          babipPercentile: babipPercentile,
+          spdPercentile: spdPercentile,
           upcomingSchedule: games.map((game) => HitterGame.fromJson(game)).toList()
       ),
       _ => throw const FormatException("Could not read hitter summary!"),
